@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Main\Configuration">
+      <UniqueIdentifier>{d09934e7-2afc-4384-9447-95eb77febcc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\Args">
+      <UniqueIdentifier>{c39eeb9b-bb70-482a-982d-3dc1b2b8b579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\XML">
+      <UniqueIdentifier>{fd9829bb-f783-4fcc-ab20-d590ae440071}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\sv_main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Configuration\Configuration.hpp">
+      <Filter>Main\Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Args\Args.hpp">
+      <Filter>Main\Args</Filter>
+    </ClInclude>
+    <ClInclude Include="source\XML\XML.hpp">
+      <Filter>Main\XML</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
