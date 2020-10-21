@@ -17,7 +17,7 @@ auto main(const int argc, char* argv[]) -> int
 	auto proxy = std::make_unique<Proxy>();
 
 	args->Initialize(argc, argv);
-
+	
 	//Configuration (by default)
 	kn::port_t port = 1337;
 	std::string hostname{ "127.0.0.1" };

@@ -32,7 +32,7 @@ public:
 		}
 		catch (const std::exception& e) {
 			std::cerr << e.what() << '\n';
-			return false;
+			return status;
 		}
 
 		const auto endpoint = kissnet::endpoint{ proxy_host, port_t  };
@@ -113,6 +113,8 @@ private:
 	{
 		kissnet::buffer<4096> buffer;
 
+		constexpr auto reserved = 0x00;
+		
 		enum Version : char
 		{
 			kSock4 = 4,
@@ -235,7 +237,7 @@ private:
 		
 		con_req.ver = kSock5;
 		con_req.cmd = kConnect;
-		con_req.rsv = 0x00;
+		con_req.rsv = reserved;
 		con_req.type = kIPv4;
 		con_req.dest_address = this->Ip();
 		con_req.dest_port = ntohs(this->dest_port_);
@@ -309,7 +311,7 @@ private:
 		if (auth_req.dest_address == INADDR_NONE)
 			return false;
 
-		const auto byte = reinterpret_cast<const std::byte*>(&auth_req);
+		auto* const byte = reinterpret_cast<const std::byte*>(&auth_req);
 		auto [auth_s_size, auth_s_valid] = this->s_proxy_.send(byte, 4);
 		if (auth_s_valid != kissnet::socket_status::valid)
 			return false;

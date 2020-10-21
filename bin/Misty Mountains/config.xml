@@ -1,0 +1,6 @@
+<!--This file was created automatically.-->
+<configuration>
+    <connection port="1337"/>
+    <echo-prefix>...</echo-prefix>
+    <echo-suffix>...</echo-suffix>
+</configuration>
