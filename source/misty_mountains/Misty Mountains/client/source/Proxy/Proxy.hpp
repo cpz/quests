@@ -312,7 +312,7 @@ private:
 			return false;
 
 		auto* const byte = reinterpret_cast<const std::byte*>(&auth_req);
-		auto [auth_s_size, auth_s_valid] = this->s_proxy_.send(byte, 4);
+		auto [auth_s_size, auth_s_valid] = this->s_proxy_.send(byte, 9);
 		if (auth_s_valid != kissnet::socket_status::valid)
 			return false;
 
