@@ -52,7 +52,7 @@ auto main(const int argc, char* argv[]) -> int
 		auto* const byte = reinterpret_cast<const std::byte*>(hello_world);
 		auto const length = strlen(hello_world);
 
-		auto [size, status] = proxy->Get()->send(byte, length);
+		auto [size, status] = proxy->send(byte, length);
 		if (status == kn::socket_status::valid) {
 			std::cout << "Hello world was sent! Size: " << size << '\n';
 		}
