@@ -17,6 +17,12 @@ source/uimage
 source/mr_proper
 - Removes C++ comments like '//' '///' or '/*' and '*/' from project
 
+source/XO
+- Simple X-O game made in C++ with ImGUI
+
+source/p_p
+- readin' json file and workin' with it in Go lang
+
 License
 ----
 
