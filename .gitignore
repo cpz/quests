@@ -354,6 +354,7 @@ tmtags
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+.vscode
 
 ##### NetBeans
 **/nbproject/private/
@@ -1011,3 +1012,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+*.jpg
