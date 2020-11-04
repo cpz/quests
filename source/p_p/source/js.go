@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"strconv"
 )
 
@@ -20,13 +19,13 @@ func newObject(value interface{}) customObject {
 	}
 }
 
-func (v *customObject) init() error {
+func (v *customObject) Init() error {
 	var ok bool
 
 	v.m, ok = v.decodedJSON.(map[string]interface{})
 
 	if !ok {
-		return errors.New("Can't convert interface in to map")
+		return throw("Can't convert interface in to map")
 	}
 
 	return nil
@@ -36,7 +35,7 @@ func (v *customObject) init() error {
 func (v *customObject) Get(value string) (interface{}, error) {
 	child, ok := v.Map()[value]
 	if !ok {
-		return 0, errors.New("cant get \"" + value + "\" value")
+		return 0, throw("cant get \"" + value + "\" value")
 	}
 
 	return child, nil
@@ -51,7 +50,7 @@ func (v *customObject) GetMultiple(value ...string) ([]interface{}, error) {
 		if err == nil {
 			array = append(array, val)
 		} else {
-			return array, errors.New("current value \"" + key + "\" is not found")
+			return array, throw("current value \"" + key + "\" is not found")
 		}
 	}
 
@@ -74,13 +73,13 @@ func (v *customObject) GetFloat(value string) (float64, error) {
 	case string:
 		parsed, err := strconv.ParseFloat(v, 64)
 		if err != nil {
-			return 0, errors.New("getValue: parsing \"" + v + "\": not a float")
+			return 0, throw("GetFloat: parsing \"" + v + "\": not a float")
 		}
 
 		return parsed, nil
 
 	default:
-		return 0, errors.New("getValue: unknown value")
+		return 0, throw("GetFloat: unknown value")
 	}
 }
 
@@ -92,7 +91,7 @@ func (v *customObject) GetString(value string) (string, error) {
 
 	parsedString, ok := child.(string)
 	if !ok {
-		return "", errors.New("cant convert \"" + value + "\" to string ")
+		return "", throwConvert(value)
 	}
 
 	return parsedString, nil
@@ -106,7 +105,7 @@ func (v *customObject) GetBool(value string) (bool, error) {
 
 	parsedBool, ok := child.(bool)
 	if !ok {
-		return false, errors.New("cant convert \"" + value + "\" to boolean ")
+		return false, throwConvert(value)
 	}
 
 	return parsedBool, nil
@@ -120,11 +119,11 @@ func (v *customObject) GetArray(value string) ([]interface{}, error) {
 
 	arr, ok := child.([]interface{})
 	if !ok {
-		return nil, errors.New("cant convert \"" + value + "\" to array")
+		return nil, throwConvert(value)
 	}
 
 	if len(arr) == 0 {
-		return nil, errors.New("array with name \"" + value + "\" is empty")
+		return nil, throw("array with name \"" + value + "\" is empty")
 	}
 
 	return arr, nil

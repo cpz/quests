@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"regexp"
 )
@@ -41,20 +40,20 @@ func getData(data interface{}) (unknown0, error) {
 
 	js := newObject(data)
 
-	err := js.init()
+	err := js.Init()
 	if err != nil {
-		return unk0, errors.New("cant initialize custom json")
+		return unk0, throw("cant initialize custom json")
 	}
 
 	unk0.Foo, err = js.GetFloat("foo")
 	if err != nil {
 		fmt.Println(err)
-		return unk0, errors.New("GetFloat foo has failed")
+		return unk0, throw("GetFloat foo has failed")
 	}
 
 	unk0.Bar, err = js.GetString("bar")
 	if err != nil {
-		return unk0, errors.New("GetString bar has failed")
+		return unk0, throw("GetString bar has failed")
 	}
 
 	unk0.Baz, err = js.GetString("baz")
@@ -62,20 +61,20 @@ func getData(data interface{}) (unknown0, error) {
 		re := regexp.MustCompile(`^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$`)
 
 		if !re.MatchString(unk0.Baz) {
-			return unk0, errors.New("Key 'baz' is not valid russian telephone number")
+			return unk0, throw("Key 'baz' is not valid russian telephone number")
 		}
 	} else {
-		return unk0, errors.New("GetString baz has failed")
+		return unk0, throw("GetString baz has failed")
 	}
 
 	unk0.Qoo, err = js.GetBool("Qoo")
 	if err != nil {
-		return unk0, errors.New("GetBool qoo has failed")
+		return unk0, throw("GetBool qoo has failed")
 	}
 
 	unk0.Foz, err = js.GetArray("foz")
 	if err != nil {
-		return unk0, errors.New("GetArray foz has failed")
+		return unk0, throw("GetArray foz has failed")
 	}
 
 	return unk0, nil
