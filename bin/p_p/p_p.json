@@ -1,1 +1,1 @@
-{"foo": "2.99", "bar": "kek", "baz": "79502885623", "gay": 1337, "value": false, "foz": ["1", "2", "3"]}
+{"foo": 2.99, "bar": "kek", "baz": "79502885623", "gay": 1337, "Qoo": true, "foz": [1, "2", "three", 1.337, false, true]}

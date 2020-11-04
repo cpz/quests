@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 )
 
@@ -48,8 +47,6 @@ func (v *customObject) GetMultiple(value ...string) ([]interface{}, error) {
 	var array []interface{}
 
 	for _, key := range value {
-		fmt.Println(key)
-
 		val, err := v.Get(key)
 		if err == nil {
 			array = append(array, val)
@@ -116,8 +113,6 @@ func (v *customObject) GetBool(value string) (bool, error) {
 }
 
 func (v *customObject) GetArray(value string) ([]interface{}, error) {
-	var result []interface{}
-
 	child, err := v.Get(value)
 	if err != nil {
 		return nil, err
@@ -132,9 +127,5 @@ func (v *customObject) GetArray(value string) ([]interface{}, error) {
 		return nil, errors.New("array with name \"" + value + "\" is empty")
 	}
 
-	for _, v := range arr {
-		result = append(result, v)
-	}
-
-	return result, nil
+	return arr, nil
 }
