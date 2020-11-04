@@ -38,14 +38,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("JSON:\n\tFoo \t: \t%v\n\tBar \t: \t%v\n\tBaz \t: \t%v\n", res.Foo, res.Bar, res.Baz)
+	fmt.Printf("JSON:\n\tFoo \t: \t%v\n\tBar \t: \t%v\n\tBaz \t: \t%v\n\tQoo \t: \t%v\n", res.Foo, res.Bar, res.Baz, res.Qoo)
 
 	if len(res.Foz) != 0 {
 		fmt.Printf("\tFoz \t: \t%+v\n", res.Foz)
-	}
-
-	if len(res.unknown) != 0 {
-		fmt.Printf("\tUnknown : \t%+v\n", res.unknown)
 	}
 
 	fmt.Println("g_G - press enter to quit")
